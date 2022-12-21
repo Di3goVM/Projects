@@ -24,6 +24,7 @@ body{
     position: relative;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     
     height: 50px;
     width: 500px;    
@@ -46,7 +47,7 @@ body{
 
 .botonInicio:active{
     color: rgb(153, 153, 153);
-    background-color: rgb(65, 65, 71);
+   
 }
 
 .propiedades{

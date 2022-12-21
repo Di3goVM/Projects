@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Barra Lateral</title>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="viewport">
+	
+	<div class="container">
+		<ul class="items">
+			
+			<li class="list">
+				<a href="#">
+				<span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+				<span class="titulo">Home</span>
+				</a>
+			</li>
+			
+			
+			<li class="list">
+				<a href="#">
+				<span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+				<span class="titulo">Perfil</span>
+				</a>
+			</li>
+			
+			
+			<li class="list">
+				<a href="#">
+				<span class="icon"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></span>
+				<span class="titulo">Mensajes</span>
+				</a>
+			</li>
+			
+			
+			<li class="list">
+				<a href="#">
+				<span class="icon"><ion-icon name="construct-outline"></ion-icon></span>
+				<span class="titulo">Ajustes</span>
+				</a>
+			</li>
+			
+			
+			<li class="list">
+				<a href="#">
+				<span class="icon"><ion-icon name="help-circle-outline"></ion-icon></span>
+				<span class="titulo">Ayuda</span>
+				</a>
+			</li>
+			
+			
+			<li class="list">
+				<a href="#">
+				<span class="icon"><ion-icon name="key-outline"></ion-icon></ion-icon></span>
+				<span class="titulo">Contraseña</span>
+				</a>
+			</li>
+			
+				
+			<li class="list">
+				<a href="#">		
+				<span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
+				<span class="titulo">Salir</span>
+			    </a>
+			</li>
+			
+			
+		</ul>
+	</div>
+
+	<div class="boton">
+		<button class="activarMenu">
+			<ion-icon name="menu-outline" class= "open"></ion-icon>
+			<ion-icon name="close-outline" class="close"></ion-icon>
+		</button>
+	</div>
+	
+</div>
+
+<script type="text/javascript">
+	let menu = document.querySelector('.activarMenu');
+	let desplazarMenu = document.querySelector('.container');
+
+	menu.onclick = function(){
+		menu.classList.toggle('active');
+		desplazarMenu.classList.toggle('active');
+	}
+
+	desplazarMenu.onclick = function(){
+		if(menu.className == 'activarMenu active' && desplazarMenu.className == 'container active') return
+		menu.className = 'activarMenu active';
+		desplazarMenu.className = 'container active';
+
+	}
+
+
+	let list = document.querySelectorAll('.list');
+	for( let i=0; i< list.length;i++ ){
+		list[i].onclick = function() {
+			let j = 0;
+			while( j < list.length){
+				list[j++].className = 'list';
+			}
+			list[i].className = 'list active';
+			
+		}
+	}
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

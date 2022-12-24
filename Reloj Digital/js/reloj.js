@@ -58,10 +58,12 @@ class Reloj {
 
 const hora = document.getElementById('hora');
 const encendido = document.querySelector('.botonInicio');
+const timbre = new Audio('js/botonEncendido.mp3');
 
 const display = new Reloj(hora);
 
 encendido.onclick = function(){
     encendido.classList.toggle('active');
     display.encenderReloj();
+    timbre.play();
 }

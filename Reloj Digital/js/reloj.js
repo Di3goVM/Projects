@@ -3,6 +3,7 @@
 class Reloj {
     constructor(tiempo){
         this.botonEncendido = false;
+        
         this.botonFecha = "";
         this.botonCronometro = "";
         this.pantalla = tiempo;
@@ -24,6 +25,8 @@ class Reloj {
             this.pantalla.style.color = "rgb(113, 133, 133)";
             
         }
+        
+
     }
 
     mostrarPantalla(){
@@ -54,6 +57,11 @@ class Reloj {
 //declarar variables y objeto:
 
 const hora = document.getElementById('hora');
+const encendido = document.querySelector('.botonInicio');
 
 const display = new Reloj(hora);
 
+encendido.onclick = function(){
+    encendido.classList.toggle('active');
+    display.encenderReloj();
+}

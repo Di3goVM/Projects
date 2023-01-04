@@ -1,28 +1,32 @@
 //declarar clase:
 
 class Reloj {
-    constructor(tiempo){
-        this.botonEncendido = false;
-        
-        this.botonFecha = "";
-        this.botonCronometro = "";
-        this.pantalla = tiempo;
-        this.intervalo = 0;
+    constructor(hora,minutos,segundos){
+        this.botonEncendido = false; 
+        this.botonFecha = false;
+        this.botonCronometro = false;
+        this.hora = hora;
+        this.minutos = minutos;
+        this.segundos = segundos;
+        this.intervaloTiempo = 0;
+        this.intervaloCronometro = 0;
     }
 
-    encenderReloj(){
+    encenderReloj(colorPantalla){
         if(this.botonEncendido == false){
             
             this.botonEncendido = true;
-            this.pantalla.style.color = "rgb(208, 236, 236)";
+            colorPantalla.style.color = "rgb(208, 236, 236)";
             this.mostrarPantalla();
 
         } else {
             
             this.botonEncendido = false;
             this.mostrarPantalla();
-            this.pantalla.innerHTML = "00:00:00";
-            this.pantalla.style.color = "rgb(113, 133, 133)";
+            this.mostrarCronometro();
+            colorPantalla.style.color = "rgb(113, 133, 133)";
+            
+           
             
         }
         
@@ -31,22 +35,110 @@ class Reloj {
 
     mostrarPantalla(){
         if(this.botonEncendido == true){
-        this.intervalo = setInterval(() => {
+        this.intervaloTiempo = setInterval(() => {
 
             const local = new Date();
         
-            this.pantalla.innerHTML = local.toLocaleTimeString();
-
+            this.hora.innerHTML = local.getHours();
+            this.minutos.innerHTML = local.getMinutes();
+            this.segundos.innerHTML = local.getSeconds();
+            
+            this.hora.innerHTML = this.hora.innerHTML.padStart(2, "0");
+            this.minutos.innerHTML = this.minutos.innerHTML.padStart(2, "0");
+            this.segundos.innerHTML = this.segundos.innerHTML.padStart(2, "0");
             
             
             
         }, 1000);
         
         } else {
-            clearInterval(this.intervalo);
+            clearInterval(this.intervaloTiempo);
+            this.hora.innerHTML = "00";
+            this.minutos.innerHTML = "00";
+            this.segundos.innerHTML = "00";
 
             
         }
+    }
+
+    mostrarFecha(){
+        if(this.botonFecha == false){
+            console.log("boton activado");
+            this.botonFecha = true;
+
+        }
+        else{
+            console.log("boton desactivado");
+            this.botonFecha = false;
+        }
+    }
+
+    mostrarCronometro(){
+        if(this.botonCronometro == false && this.botonEncendido == true){
+            this.botonCronometro = true;
+            this.calcularCronometro();
+        }
+        else{
+            console.log("boton desactivado");
+            this.botonCronometro = false;
+            this.calcularCronometro();
+
+        }
+    }
+
+    calcularCronometro(){
+            clearInterval(this.intervaloTiempo);
+
+            this.hora.innerHTML = "00";
+            this.minutos.innerHTML = "00";
+            this.segundos.innerHTML = "00";
+
+
+            if(this.botonCronometro == true){
+            let cCentesimas = 0;
+            let cSegundos = 0;
+            let cMinutos = 0;
+
+            const sumarMinuto = () =>{
+                if(cMinutos < 99) cMinutos++;
+            }
+
+            const sumarSegundo = () =>{
+                if(cSegundos == 59){
+                    cSegundos = 0;
+                    sumarMinuto();
+                }
+                else{
+                    cSegundos++;
+                    
+                }
+            }
+            
+            const incrementar = () =>{    
+                if(cCentesimas == 99){
+                cCentesimas = 0;
+                sumarSegundo();
+                }
+                else{
+                    cCentesimas++;
+                }
+            }
+    
+        
+
+            this.intervaloCronometro = setInterval(() => {
+            incrementar();
+
+             this.hora.innerHTML = cMinutos.toString().padStart(2, "0");
+             this.minutos.innerHTML = cSegundos.toString().padStart(2, "0");
+             this.segundos.innerHTML = cCentesimas.toString().padStart(2, "0");
+            },10);
+            }
+            else{
+                clearInterval(this.intervaloCronometro);
+                this.mostrarPantalla();
+            }
+        
     }
 }
 
@@ -56,14 +148,30 @@ class Reloj {
 
 //declarar variables y objeto:
 
-const hora = document.getElementById('hora');
+const horaReloj = document.getElementById('hora');
+const minutosReloj = document.getElementById('minutos');
+const segundosReloj = document.getElementById('segundos');
+const pantalla = document.querySelector('.marco-reloj');
+
 const encendido = document.querySelector('.botonInicio');
+const fecha = document.getElementById('fecha');
+const cronometro = document.getElementById('cronometro');
 const timbre = new Audio('js/botonEncendido.mp3');
 
-const display = new Reloj(hora);
+const display = new Reloj(horaReloj,minutosReloj,segundosReloj);
+
+//Programando llamadas:
 
 encendido.onclick = function(){
     encendido.classList.toggle('active');
-    display.encenderReloj();
+    display.encenderReloj(pantalla);
     timbre.play();
+}
+
+fecha.onclick = function(){
+    display.mostrarFecha();
+}
+
+cronometro.onclick = function(){
+    display.mostrarCronometro();
 }

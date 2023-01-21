@@ -39,19 +39,24 @@ body{
     
 }
 
-
+/*botones*/
 
 .botones{
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
+    position: relative;    
     height: 50px;
     width: 500px;    
     margin-bottom: 5px;
+    
+    transition: 1s;
 }
 
+.botones-principales{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
 .botonInicio {    
     width: 55px;
@@ -95,6 +100,27 @@ body{
     fill: white;
 }
 
+/*botones cronometro*/
+
+.botones-principales.cronometroActivo{
+    display: none;
+}
+
+.botones-cronometro{
+    width: 100%;
+    height: 100%;
+}
+
+.botones-cronometro{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.botones-cronometro button{
+    width: 50px;
+    height: 50px;
+}
+
 /* Diseño Reloj */
 
 .marco-reloj{
@@ -118,9 +144,50 @@ body{
     
 }
 
+
 .tiempo{
-    width: 115px;
+    width: 112px;
+}
+
+.tiempo.desactivar,.puntos.desactivar{
+    display: none;
+}
+
+.clima{
+    font-family: 'Nunito';
+    font-size: 0.5em;
+    display: grid;
+    grid-template-columns: 180px 180px;
+    grid-template-rows: 40px 40px;
+
+}
+
+.clima.climaDesactivado{
+    display: none;
+}
+
+#grados{
+    grid-column: 1 / 2;
+    grid-row: span 2;
+    font-size: 1.2em;
     
+}
+
+.clima div {
+    position: relative;
+}
+
+#iconoAnimado{
+    position: absolute;
+    left: 30%;
+    top: -15px;
+}
+
+#descripcion{
+    grid-column: 2 / 3;
+    grid-row:2 / 3;
+    font-size: 0.5em;
+
 }
 
 /*.marco-reloj h1{

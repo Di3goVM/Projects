@@ -15,6 +15,7 @@
     <div class="pantalla">
         
         <div class="botones">
+            <div class="botones-principales">
             <button class="botonInicio" ><i class="fa-solid fa-power-off"></i></button>
              <button class="propiedades" id="fecha"><svg width="111" height="96" viewBox="0 0 111 96" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_104_2)">
@@ -37,7 +38,7 @@
                 <path d="M76.4 48.6667C76.4 61.7333 69.6 72.9333 58 79.0667C49.7333 83.6 34.8 83.2 26.1333 78.2667C18.9333 74.2667 18.6666 74.1333 18.6666 75.7333C18.6666 76.4 21.8666 78.6667 25.7333 80.8C31.6 84.1333 34.1333 84.6667 42.6666 84.6667C51.2 84.6667 53.7333 84.1333 59.7333 80.8C67.6 76.4 74.1333 69.0667 76.8 61.6C78.8 56 79.3333 40 77.4666 40C76.8 40 76.4 43.8667 76.4 48.6667Z" fill="black"/>
                 </svg>
                 </button>
-             <button class="propiedades"><svg width="86" height="71" viewBox="0 0 86 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <button class="propiedades" id="clima"><svg width="86" height="71" viewBox="0 0 86 71" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M44 2.20001C44 2.86667 44.5333 5.13334 45.3333 7.00001C47.2 11.9333 49.6 9.93334 47.7333 5.00001C46.5333 1.26667 44 -0.599993 44 2.20001Z" fill="black"/>
                 <path d="M59.3333 5.13333C58.2667 9.66666 59.4667 11.9333 61.3333 9C62.9333 6.46666 63.0667 0.999999 61.4667 0.999999C60.8 0.999999 59.8667 2.86667 59.3333 5.13333Z" fill="black"/>
                 <path d="M30.9333 11.1333C31.4667 13.8 35.4667 16.6 36.8 15.2667C37.8667 14.2 33.6 9.00001 31.7333 9.00001C31.0667 9.00001 30.6667 9.93334 30.9333 11.1333Z" fill="black"/>
@@ -46,12 +47,28 @@
                 <path d="M77.3333 25C76.2667 25.6667 75.8667 26.6 76.2667 27C77.4667 28.2 85.3333 26.3333 85.3333 24.8667C85.3333 23.2667 79.8667 23.4 77.3333 25Z" fill="black"/>
                 <path d="M76 39.5333C76 41 83.8667 42.8667 85.0667 41.6667C85.4667 41.2667 85.0667 40.3333 84 39.6667C81.4667 38.0667 76 37.9333 76 39.5333Z" fill="black"/>
                 </svg>
-                </button>   
+                </button>
+            </div>
+            <div class="botones-cronometro" id="botones-cronometro">
+                <button id="playAndPauseCronometro"><ion-icon name="play-circle-outline"></ion-icon><ion-icon name="pause-circle-outline"></ion-icon></button>
+                <button id="stopCronometro"><ion-icon name="stop-circle-outline"></ion-icon></button>
+                <button id="backToMenu"><ion-icon name="arrow-back-circle-outline"></ion-icon></button>
+            </div>   
         </div>
         <div class="marco-reloj">
-            <span class="tiempo" id="hora">00</span>:
-            <span class="tiempo" id="minutos">00</span>:
+            
+            <span class="tiempo" id="hora">00</span>
+            <span class="puntos">:</span>
+            <span class="tiempo" id="minutos">00</span>
+            <span class="puntos">:</span>
             <span class="tiempo" id="segundos">00</span>
+            <div class="clima climaDesactivado">
+             <span id="grados"></span>
+             <div>
+             <img id="iconoAnimado" src="">
+            </div>
+             <span id="descripcion"></span>                 
+            </div>
         </div>
         <div class="patitas">
             <div class="pata"></div>
@@ -59,5 +76,7 @@
         </div>
     </div>
     <script src="js/reloj.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

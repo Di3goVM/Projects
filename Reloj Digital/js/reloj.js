@@ -64,6 +64,16 @@ class Reloj {
     }
 
     mostrarFecha(){
+        if(this.botonEncendido == true){
+
+            displayCalendario.classList.toggle('calendarioDesactivado');
+            tiempoPantalla.forEach(elemento => {
+            elemento.classList.toggle('desactivar');
+            });
+            puntosPantalla.forEach(elemento => {
+            elemento.classList.toggle('desactivar');
+            });   
+
         const mesesNombre = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
         const local = new Date();
@@ -72,7 +82,8 @@ class Reloj {
             mes = local.getMonth(),
             año = local.getFullYear();
 
-        console.log(`hoy es ${dia} de ${mesesNombre[mes]} del ${año}`);
+        insertarFecha.innerHTML =`${dia} de ${mesesNombre[mes]} del ${año}`;
+        }
 
         
     }
@@ -183,6 +194,10 @@ const clima = document.getElementById('clima');
 
 //clima variables:
 const displayClima = document.querySelector('.clima');
+
+//calendario variable:
+ const displayCalendario = document.querySelector('.calendario');
+ const insertarFecha = document.getElementById('fechaEnPantalla');
 
 // botones cronometro:
 

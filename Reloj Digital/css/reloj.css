@@ -153,6 +153,8 @@ body{
     display: none;
 }
 
+/*Clima:  */
+
 .clima{
     font-family: 'Nunito';
     font-size: 0.5em;
@@ -188,6 +190,18 @@ body{
     grid-row:2 / 3;
     font-size: 0.5em;
 
+}
+
+/* calendario */
+
+.calendario {
+   
+    font-family: 'Nunito';
+    font-size: 0.4em;
+}
+
+.calendario.calendarioDesactivado{
+    display: none;
 }
 
 /*.marco-reloj h1{

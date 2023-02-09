@@ -1,7 +1,7 @@
 //declarar clase:
 
 class Reloj {
-    constructor(hora,minutos,segundos){
+    constructor(hora,minutos,segundos,minCronometro,segCronometro,cenCronometro,recordCronometro){
         this.botonEncendido = false; 
         this.botonFecha = false;
         this.hora = hora;
@@ -12,13 +12,17 @@ class Reloj {
         this.cMinutos = 0;
         this.intervaloTiempo = 0;
         this.intervaloCronometro = 0;
+        this.minCronometro = minCronometro;
+        this.segCronometro = segCronometro;
+        this.cenCronometro = cenCronometro;
+        this.recordCronometro = recordCronometro;
     }
 
-    encenderReloj(colorPantalla){
+    encenderReloj(){
         if(this.botonEncendido == false){
             
             this.botonEncendido = true;
-            colorPantalla.style.color = "rgb(208, 236, 236)";
+            
             this.mostrarPantalla();
 
         } else {
@@ -26,7 +30,7 @@ class Reloj {
             this.botonEncendido = false;
             this.mostrarPantalla();
             this.mostrarCronometro();
-            colorPantalla.style.color = "rgb(113, 133, 133)";
+            
             
            
             
@@ -61,64 +65,56 @@ class Reloj {
 
             
         }
+
+        if(this.botonEncendido == true){
+
+            
+
+            const mesesNombre = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    
+            const local = new Date();
+    
+            let dia = local.getDate(),
+                mes = local.getMonth(),
+                año = local.getFullYear();
+
+            dia = dia.toString().padStart(2, "0");
+            insertarDiaFecha.innerHTML =`${dia},${mesesNombre[mes]} 21`;
+            insertarAño.innerHTML =`${año}`
+        }
     }
 
     mostrarFecha(){
-        if(this.botonEncendido == true){
-
-            displayCalendario.classList.toggle('calendarioDesactivado');
-            tiempoPantalla.forEach(elemento => {
-            elemento.classList.toggle('desactivar');
-            });
-            puntosPantalla.forEach(elemento => {
-            elemento.classList.toggle('desactivar');
-            });   
-
-        const mesesNombre = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-
-        const local = new Date();
-
-        let dia = local.getDate(),
-            mes = local.getMonth(),
-            año = local.getFullYear();
-
-        insertarFecha.innerHTML =`${dia} de ${mesesNombre[mes]} del ${año}`;
-        }
-
-        
     }
 
     mostrarClima(){
         if(this.botonEncendido === true){
-            displayClima.classList.toggle('climaDesactivado');
-            tiempoPantalla.forEach(elemento => {
-            elemento.classList.toggle('desactivar');
-            });
-            puntosPantalla.forEach(elemento => {
-            elemento.classList.toggle('desactivar');
-            });
+            displayClima.classList.toggle('desactivado');
+            displayTiempo.classList.toggle('desactivado');
             }
     }
 
     mostrarCronometro(){
-        clearInterval(this.intervaloTiempo);
-        this.hora.innerHTML = "00";
-        this.minutos.innerHTML = "00";
-        this.segundos.innerHTML = "00";
+        
+        if(this.botonEncendido === true){
+            displayCronometro.classList.toggle('desactivado');
+            displayTiempo.classList.toggle('desactivado');
+            }
+        
 
     }
 
     calcularCronometro(comenzar,detener){
             
             const llevarPantalla = () =>{
-                this.hora.innerHTML = this.cMinutos.toString().padStart(2, "0");
-                this.minutos.innerHTML = this.cSegundos.toString().padStart(2, "0");
-                this.segundos.innerHTML = this.cCentesimas.toString().padStart(2, "0"); 
+                this.minCronometro.innerHTML = this.cMinutos.toString().padStart(2, "0");
+                this.segCronometro.innerHTML = this.cSegundos.toString().padStart(2, "0");
+                this.cenCronometro.innerHTML = this.cCentesimas.toString().padStart(2, "0"); 
             }
 
             if(comenzar == true && this.botonEncendido == true){
             
-        
+                
             const sumarMinuto = () =>{
                 if(this.cMinutos < 99) this.cMinutos++;
             }
@@ -155,7 +151,8 @@ class Reloj {
                 llevarPantalla();
                 
                 if(detener == true){
-                
+                this.recordCronometro.innerHTML = `Tiempo anterior:"${this.cMinutos.toString().padStart(2, "0")}:${this.cSegundos.toString().padStart(2, "0")}:${this.cCentesimas.toString().padStart(2, "0")}"`;
+
                 this.cCentesimas = 0;
                 this.cSegundos = 0;
                 this.cMinutos = 0;
@@ -170,6 +167,11 @@ class Reloj {
             
         
     }
+    backToMenu(){
+        displayTiempo.className = "tiempo";
+        displayClima.className = "clima desactivado";
+        displayCronometro.className = "cronometro desactivado";
+    }
 }
 
 //declarar variables y objeto:
@@ -178,36 +180,39 @@ class Reloj {
 const horaReloj = document.getElementById('hora');
 const minutosReloj = document.getElementById('minutos');
 const segundosReloj = document.getElementById('segundos');
-const pantalla = document.querySelector('.marco-reloj');
-const tiempoPantalla = document.querySelectorAll('.tiempo');
-const puntosPantalla = document.querySelectorAll('.puntos'); 
 
-//botones del reloj:
+//menu del reloj:
 
-const botonesPrincipales = document.querySelector(".botones-principales");
+const power = document.getElementById('power');
+const activarFecha = document.getElementById('activarFecha');
+const activarCronometro = document.getElementById('activarCronometro');
+const activarClima = document.getElementById('activarClima');
+const back = document.querySelectorAll('.back');
 
-const encendido = document.querySelector('.botonInicio');
-const fecha = document.getElementById('fecha');
-const cronometro = document.getElementById('cronometro');
-const timbre = new Audio('js/botonEncendido.mp3');
-const clima = document.getElementById('clima');
+//pantallas variables:
 
-//clima variables:
+const displayTiempo = document.querySelector('.tiempo');
 const displayClima = document.querySelector('.clima');
+const displayCronometro = document.querySelector('.cronometro');
+const displayFecha = document.querySelector('.fecha');
+
 
 //calendario variable:
- const displayCalendario = document.querySelector('.calendario');
- const insertarFecha = document.getElementById('fechaEnPantalla');
+const insertarDiaFecha = document.querySelector('.diaFecha');
+const insertarAño = document.querySelector('.año'); 
 
 // botones cronometro:
 
-const play = document.getElementById("playAndPauseCronometro");
-const stop = document.getElementById("stopCronometro");
-const backToMenu = document.getElementById("backToMenu");
+const play = document.querySelector('.iniciar');
+const stop = document.querySelector('.detener');
 
+const minutosCronometro = document.getElementById('minutosCronometro');
+const segundosCronometro = document.getElementById('segundosCronometro');
+const centecimasCronometro = document.getElementById('centecimasCronometro');
+const record = document.getElementById('record');
 //display pertenece a la clase:
 
-const display = new Reloj(horaReloj,minutosReloj,segundosReloj);
+const display = new Reloj(horaReloj,minutosReloj,segundosReloj,minutosCronometro,segundosCronometro,centecimasCronometro,record);
 
 //API:
 
@@ -233,8 +238,8 @@ window.addEventListener('load', ()=>{
                 temp = kelvinGrados(temp);
                 temperatura.textContent = `${temp}°C`;
                 desc = data.weather[0].description;
-                descripcion.textContent = desc;
-
+                //descripcion.textContent = desc;
+                console.log(data);
                 console.log(data.weather[0].main)
                 switch (data.weather[0].main) {
                     case 'Thunderstorm':
@@ -279,38 +284,32 @@ window.addEventListener('load', ()=>{
 })
 
 //funciones clima:
-
-clima.onclick = function(){
-    display.mostrarClima();
-}
-
 function kelvinGrados(valor){
     return parseInt(valor - 273.15);
 }
-
-//Programando llamadas:
-
-encendido.onclick = function(){
-    encendido.classList.toggle('active');
-    display.encenderReloj(pantalla);
-    timbre.play();
+//funciones botones menu:
+power.onclick = function(){
+    display.encenderReloj();
 }
 
-fecha.onclick = function(){
-    display.mostrarFecha();
+activarClima.onclick = function(){
+    display.mostrarClima();
 }
+
+activarCronometro.onclick = function(){
+    display.mostrarCronometro();
+}
+
+back.forEach(boton =>{
+    boton.addEventListener('click',()=>display.backToMenu());
+});
 
 //funciones cronometro:
 let playAndPause = false;
 let stopCronometro = false;
 
-cronometro.onclick = function(){
-    botonesPrincipales.classList.toggle('cronometroActivo');
-    display.mostrarCronometro();
-    
-}
-backToMenu.onclick = function(){
-    botonesPrincipales.classList.toggle('cronometroActivo');
+
+back.onclick = function(){
     stopCronometro = true;
     playAndPause= false;
     display.calcularCronometro(playAndPause,stopCronometro);
@@ -321,14 +320,17 @@ backToMenu.onclick = function(){
 play.onclick = function(){
     if(playAndPause == false){
     playAndPause = true;
+    play.innerHTML = "Pausar";
     display.calcularCronometro(playAndPause,stopCronometro);
     }else{
+    play.innerHTML = "Iniciar";    
     playAndPause = false;
     display.calcularCronometro(playAndPause,stopCronometro);  
     }
 }
 
 stop.onclick = function(){
+    play.innerHTML = "Iniciar";
     stopCronometro = true;
     playAndPause= false;
     display.calcularCronometro(playAndPause,stopCronometro);

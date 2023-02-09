@@ -9,224 +9,263 @@
     src: url(../Aaargh.ttf);
 }
 
+@keyframes aparecer {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
 body{
     margin: 0;
 }
 
-.titulo{
-    position: absolute;
-    background-color: transparent;
-    width: 100%;
-    margin-top: 2em;
-    text-align: center;
-    font-family: "Nunito";
-    color: white;
-    font-size: 3.5em;
-    font-weight: lighter;
-}
-
-.pantalla{
-
-    margin: 0;
+.viewport{
     width: 100%;
     height: 100vh;
+    background-image: linear-gradient(to top, #4194E1 0%, #74D2D8 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Reloj{
+    width:  750px;
+    height: 310px;
+    background-color: rgba(255, 255, 255, 0.39);
+    border: 10px solid #797979;
+    border-radius: 21px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*tiempo*/
+/* -aqui aplico estilo tanto al div de clase tiempo como a div de clase cronometro */
+.tiempo,.cronometro{
+    width: 680px;
+    height: 270px;
+    background-color: transparent;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    animation: aparecer 0.5s ease-in-out forwards;
+}
+
+.horario{
+    width: 280px;
+    height: 80px;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    font-family: 'Roboto';
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.casillaHorario{
+    width: 80px;
+    height: 100%;
+   
+}
+
+.horarioNumero{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #4e4e4e;
+}
+.puntos{
+    display: inline-block;
+    padding-bottom: 10px;
+    color: #4e4e4e;
+}
+
+.fecha{
+    height: 40px;
+    width: 200px;
+    
+    position: absolute;
+    top: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
-    background-image: linear-gradient(to top, #094658fa 0%, #020e38 80%);
-    
+}
+.año,.diaFecha{
+    font-family: 'Roboto';
+    color: #616161;
+}
+.ampm{
+    position: absolute;
+    font-size: 15px;
+    font-weight: normal;
+    right: -20px;
+    top: 0px;
 }
 
-/*botones*/
-
-.botones{
-    position: relative;    
-    height: 50px;
-    width: 500px;    
-    margin-bottom: 5px;
-    
-    transition: 1s;
-}
-
-.botones-principales{
-    width: 100%;
-    height: 100%;
+.menu{
+    width: 50px;
+    height: 270px;
+    background-color: #979797;
+    position: absolute;
+    left: -20px;
+    border-radius: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
 
-.botonInicio {    
-    width: 55px;
-    height: 50px;
-    background-color: rgb(37, 35, 49);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-    color: rgb(161, 159, 159);
-    font-size: 1.5em;
-    border: none;
-   
-}
-
-.botonInicio.active{
-    color: rgb(153, 153, 153);
-    box-shadow: 0px 0px 20px white;
-    transition: 0.5s;
-   border: 0.002em solid white;
-}
-
-.propiedades{
+.menu .icono {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    font-size: 1.3em;
     background-color: transparent;
     border: none;
-    cursor: pointer;
-    
-    
 }
 
-.propiedades i{
-    font-size: 2em;
-}
-
-.propiedades svg{
- font-weight: bold;   
- width: 2em;
- height: 2em;
-}
-
-.propiedades svg path {
-    fill: white;
-}
-
-/*botones cronometro*/
-
-.botones-principales.cronometroActivo{
+.tiempo.desactivado{
     display: none;
 }
 
-.botones-cronometro{
-    width: 100%;
-    height: 100%;
-}
-
-.botones-cronometro{
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.botones-cronometro button{
-    width: 50px;
-    height: 50px;
-}
-
-/* Diseño Reloj */
-
-.marco-reloj{
-    border: 10px solid rgb(219, 186, 141);
-    border-bottom-color: rgb(179, 142, 109);
-    border-right-color: rgb(179, 142, 109);
-    border-radius: 10px;
-    background-color: whitesmoke;
-    width: 500px;
-    height: 225px;
-    text-align: center;
-    /*box-shadow: 5px 10px 30px rgb(110, 106, 106);*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "reloj";
-    font-size: 7em;
-    color:rgb(113, 133, 133);
-    background-color: black;
-    position: relative;
+/*clima*/
+.clima.desactivado{
+    display: none;
     
 }
-
-
-.tiempo{
-    width: 112px;
-}
-
-.tiempo.desactivar,.puntos.desactivar{
-    display: none;
-}
-
-/*Clima:  */
 
 .clima{
-    font-family: 'Nunito';
-    font-size: 0.5em;
-    display: grid;
-    grid-template-columns: 180px 180px;
-    grid-template-rows: 40px 40px;
-
-}
-
-.clima.climaDesactivado{
-    display: none;
-}
-
-#grados{
-    grid-column: 1 / 2;
-    grid-row: span 2;
-    font-size: 1.2em;
-    
-}
-
-.clima div {
+    width: 680px;
+    height: 270px;
+    background-color: transparent;  
     position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 40px 230px;
+    font-family: 'Roboto';
+    animation: aparecer 0.5s ease-in-out forwards;
 }
 
-#iconoAnimado{
-    position: absolute;
-    left: 30%;
-    top: -15px;
+.lugar span{
+    font-weight: bold;
+    color: #686666;
 }
-
-#descripcion{
-    grid-column: 2 / 3;
-    grid-row:2 / 3;
-    font-size: 0.5em;
-
-}
-
-/* calendario */
-
-.calendario {
-   
-    font-family: 'Nunito';
-    font-size: 0.4em;
-}
-
-.calendario.calendarioDesactivado{
-    display: none;
-}
-
-/*.marco-reloj h1{
-    font-family: "reloj";
-    font-size: 7em;
-    font-weight:normal;
-    padding: 0.5em 0.4em;
-    margin: 0;
-    color:rgb(113, 133, 133);
-}*/
-
-.patitas{
-    width: 600px;
-    height: 15px;
+.casillasClima{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     
-
+}
+.back{
+    position: absolute;
+    top: 0;
+    left: -20px;
+    border: none;
+    background-color: transparent;
 }
 
-.pata{
-    width: 30px;
-    height: 15px;
-    background-color: black;
-    border-radius: 10%;
-    border-top: none;
+.climaActual,.climaPosterior{
+    background-color: transparent;
+    border: 2px solid rgb(221, 220, 220);
+    border-radius: 10px;
+}
+.climaActual{
+    width: 190px;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: none;
+    
+}
+.climaActualItem{
+    margin: 0;
+    font-size: 0.8em;
+    color: #797979;
+}
+.climaActual h2{
+    font-size: 3.25em;
+    color: #5a5a5a;
+}
+.climaActual div{
+    height: 67px;
+    display: flex;
+    align-items: center;
 }
 
+.climaActual div #iconoAnimado{
+    height: 100px;
+}
+.climaPosterior{
+    width: 140px;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.climaPosterior span{
+    text-align: center;
+    font-size: 13px;
+}
+
+.diaYGrados{
+    font-size: 14px;
+    font-weight: bold;
+}
+.descripcionClimaPosterior{
+    color: #797979;
+}
+
+
+/*cronometro*/
+
+.iconoCronometro{
+    position: absolute;
+    font-size: 25px;
+    right: -20px;
+    bottom: 10px;
+}
+.funcionesCronometro{
+    
+    width: 200px;
+    
+    position: absolute;
+    top: 180px;
+    left: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cronometro.desactivado{
+    display: none;
+}
+
+.botonesCronometro{
+    width: 200px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.iniciar ,.detener{
+     width: 80px;
+     height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: #d1cfcf;
+}
+/*calendario*/

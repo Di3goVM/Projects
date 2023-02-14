@@ -71,16 +71,19 @@ class Reloj {
             
 
             const mesesNombre = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+            const semanaNombre = ["Domingo","Lunes","Martes","Miercoles","jueves","Viernes","Sabado"];
     
             const local = new Date();
     
             let dia = local.getDate(),
+                diaSemana = local.getDay(),
                 mes = local.getMonth(),
                 año = local.getFullYear();
 
             dia = dia.toString().padStart(2, "0");
-            insertarDiaFecha.innerHTML =`${dia},${mesesNombre[mes]} 21`;
+            insertarDiaFecha.innerHTML =`${semanaNombre[diaSemana]},${mesesNombre[mes]} ${dia}`;
             insertarAño.innerHTML =`${año}`
+            console.log(new Date());
         }
     }
 

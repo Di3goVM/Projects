@@ -8,9 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto&display=swap" rel="stylesheet">
     <script src="js/Calculadora.js" text="text/javascript"></script>
     <script src="js/Display.js" text="text/javascript"></script>
     <script src="js/index.js" text="text/javascript" defer></script>
+    <link rel="shortcut icon" href="img/calculator-outline 1.svg" type="image/x-icon">
 </head>
 <body>
     <div class="container">
@@ -23,8 +25,8 @@
 
                 </div>
             </div>
-            <button class="col-2" onclick="display.borrarTodo()">C</button>
-            <button onclick="display.borrar()">&larr;</button>
+            <button class="col-2 comando" onclick="display.borrarTodo()">C</button>
+            <button onclick="display.borrar()" class="comando">&larr;</button>
             <button class="operador" value="dividir">%</button>
             <button class="numero">7</button>
             <button class="numero">8</button>
@@ -39,8 +41,8 @@
             <button class="numero">3</button>
             <button class="operador" value="sumar">+</button>
             <button class="col-2 numero">0</button>
-            <button class="numero">.</button>
-            <button class="operador" value="igual">=</button>
+            <button class="numero comando">.</button>
+            <button class="operador igual" value="igual">=</button>
         </div>
     </div>
     

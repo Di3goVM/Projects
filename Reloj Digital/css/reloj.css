@@ -31,6 +31,28 @@ body{
     align-items: center;
 }
 
+/*bienvenida*/
+.cartelBienvenido{
+    position: absolute;
+    top: 3em;
+    text-align: center;
+    animation: aparecer 0.5s ease-in-out forwards;
+}
+
+.titulo{
+    font-family: 'Bebas Neue';
+    font-size: 3em;
+    margin: 0;
+}
+.subtitulo{
+    font-family: 'Roboto';
+    font-size: 1.2em;
+    margin: 5px;
+    color: rgb(145, 145, 145);
+    font-weight: bold;
+}
+
+/*Reloj*/
 .Reloj{
     width:  750px;
     height: 310px;

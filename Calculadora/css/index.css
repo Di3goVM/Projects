@@ -3,6 +3,15 @@
     color: rgb(66, 66, 66);
 }
 
+@keyframes aparecer {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
 body {
     margin: 0;    
 }
@@ -13,7 +22,27 @@ body {
     align-items: center;
     height: 100vh;
     background-image: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
-    
+    position: relative;    
+}
+
+/*Bienvenida*/
+.cartelBienvenido{
+    position: absolute;
+    top: 3em;
+    text-align: center;
+    animation: aparecer 0.5s ease-in-out forwards;
+}
+
+.titulo{
+    font-family: 'Bebas Neue';
+    font-size: 3em;
+    margin: 0;
+}
+.subtitulo{
+    font-family: 'Roboto';
+    margin: 5px;
+    color: rgb(145, 145, 145);
+    font-weight: bold;
 }
 
 .calculadora {
@@ -24,7 +53,8 @@ body {
     padding: 15px;
     border-radius: 32px;
     box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.555);
-
+    position: relative;
+    top: 2em;
 }
 
 button {
